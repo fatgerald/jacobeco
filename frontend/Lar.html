@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<!-- saved from url=(0057)https://sl-br.com/main/index.html?time=0.7183712571036716 -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style class="vjs-styles-defaults">
+      .video-js {
+        width: 300px;
+        height: 150px;
+      }
+
+      .vjs-fluid {
+        padding-top: 56.25%
+      }
+    </style>
+    
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=0,initial-scale=1,maximum-scale=1, minimum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>Lar</title>
+    <link href="./Lar_files/layui.css" rel="stylesheet">
+    <link href="./Lar_files/main.css" rel="stylesheet">
+    <link href="./Lar_files/layer.css" rel="stylesheet">
+    <script src="./Lar_files/layui.js.baixados"></script>
+    <script src="./Lar_files/comm.js.baixados"></script>
+    <link href="./Lar_files/video-js.min.css" rel="stylesheet">
+    <script src="./Lar_files/video.min.js.baixados"></script>
+    <style type="text/css">
+        .small-font {
+            font-size: 12px;
+            -webkit-transform-origin-x: 0;
+            -webkit-transform: scale(0.80);
+        }
+
+        .smallsize-font {
+            font-size: 9.6px;
+        }
+
+        .tblue {
+            background: #1476ff !important;
+        }
+
+        .tgreen {
+            background: #4caf50 !important;
+        }
+
+        .tred {
+            background: #f44336 !important;
+        }
+
+        .tzs {
+            background: #6739b6 !important;
+        }
+
+        .tss {
+            font-weight: bold;
+            font-size: 17px;
+            text-align: center;
+            border: 0px;
+            color: #fff;
+            height: 45px;
+            line-height: 45px;
+            border-radius: 10px;
+            border-bottom-left-radius: 0px;
+            border-bottom-right-radius: 0px;
+        }
+
+        .typeitem {
+            color: #999;
+            float: left;
+            margin-left: 2.5%;
+            cursor: pointer;
+            margin-bottom: 2px;
+        }
+
+        .layui-carousel > [carousel-item] > * {
+            display: none;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #f1f1f1;
+            transition-duration: .3s;
+            -webkit-transition-duration: .3s;
+        }
+
+        .typeitemover {
+            color: #fff;
+            border-bottom: 1px solid #fff;
+            float: left;
+            margin-left: 2.5%;
+            cursor: pointer;
+            margin-bottom: 1px;
+        }
+
+        .top1 {
+            position: fixed;
+            background: #fff;
+            z-index: 10000;
+            width: 100%;
+            height: 30px;
+            top: -30px;
+        }
+
+        .aui {
+            overflow: hidden;
+            background: #fff;
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .scroll-wrapper {
+            -webkit-overflow-scrolling: touch;
+            overflow-y: scroll;
+        }
+
+
+        .aui li {
+            width: 33.33%;
+            float: left;
+            padding: 5px 0;
+        }
+
+            .aui li img {
+                display: block;
+                margin: 0 auto;
+                width: auto;
+                height: 45px;
+            }
+
+            .aui li p {
+                text-align: center;
+                font-size: 14px;
+                margin-top: 5px;
+                color: #566172;
+                font-family: MicrosoftYaHei;
+            }
+
+
+        .announcement-title {
+            text-align: left;
+            font-size: 20px;
+            font-weight: 600;
+            color: #434343;
+            margin-left: 5%;
+        }
+
+        .layui-m-layercont {
+            padding: 30px 15px;
+            padding-top: 10px;
+            line-height: 22px;
+            text-align: center;
+        }
+
+        .layui-m-layerbtn span[yes] {
+            color: rgb(58,114,198) !important
+        }
+
+        .layui-m-layerchild {
+            box-shadow: 8px 8px 8px rgb(0 0 0 / 60%);
+        }
+
+        .navtab {
+            cursor: pointer;
+        }
+
+        .gray {
+            -webkit-filter: grayscale(100%);
+            -moz-filter: grayscale(100%);
+            -ms-filter: grayscale(100%);
+            -o-filter: grayscale(100%);
+            filter: grayscale(100%);
+            filter: blue;
+        }
+
+        layer-page .layui-layer-btn {
+            padding-top: 0px !important;
+        }
+
+        .layui-layer-btn {
+            text-align: center !important;
+            padding: 0 0px 12px;
+            pointer-events: auto;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+            .layui-layer-btn a {
+                margin: 5px 5px 0;
+                padding: 0 0px !important;
+                height: 28px;
+                line-height: 28px;
+                text-align: center;
+                width: 50%;
+                border: 1px solid #dedede;
+                background-color: #fff;
+                color: #333;
+                border-radius: 2px;
+                font-weight: 400;
+                cursor: pointer;
+                text-decoration: none;
+                border-radius: 20px !important;
+            }
+
+        .layui-layer-page {
+            border-radius: 20px !important;
+        }
+
+        .layui-layer-btn .layui-layer-btn0 {
+            border-color: #e7d1a6 !important;
+            background-image: linear-gradient(6deg, #ccaa78 21%, #e7d1a6 77%) !important;
+            color: #fff;
+        }
+
+        .navtab {
+            cursor: pointer;
+        }
+
+
+        .topname {
+            line-height: 46px;
+            font-weight: 700;
+            font-size: 16px;
+            width: 50%;
+            text-align: center;
+            color: #fff;
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            margin: auto;
+        }
+
+        div#div1 {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            z-index: -1;
+        }
+
+            div#div1 > img {
+                height: 100%;
+                width: 100%;
+                border: 0;
+            }
+
+
+
+        .cmbtn {
+            width: 60%;
+            cursor: pointer;
+            font-size: 14px;
+            height: 40px;
+            line-height: 40px;
+            margin-top: 20px;
+            border-radius: 20px !important;
+            color: #fff;
+            margin: 0 auto;
+            background: linear-gradient(to right,#ddc088,#c0892f)
+        }
+
+        .indexdiv {
+            background: #000000;
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            bottom: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 101;
+            filter: alpha(opacity=95);
+            opacity: 0.95 !important;
+            display: none;
+        }
+
+        .divWrap {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .div {
+            display: inline-block;
+            white-space: nowrap;
+            animation: 5s div linear infinite normal;
+        }
+
+        div {
+            cursor: pointer;
+        }
+
+        @keyframes marqueeAnim {
+            0% {
+                transform: translateX(100vw);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        .marquee-content {
+            white-space: nowrap;
+            display: inline-block;
+            animation: marqueeAnim 5s linear 0s infinite;
+        }
+
+        .marquee-root {
+            width: 100%;
+            text-align: left;
+            overflow: hidden;
+        }
+    </style>
+    <script type="text/javascript">
+        layui.use(['form', 'layedit', 'laydate', 'layer', 'carousel', 'flow', 'element', 'cookie', 'mobile'], function () {
+            var form = layui.form;
+            var element = layui.element;
+            var $ = layui.jquery, layer = layui.layer;
+            var carousel = layui.carousel;
+            var mobile = layui.mobile;
+            var mobilelayer = mobile.layer;
+            var flow = layui.flow;
+            var cookie = layui.cookie;
+
+            $().ready(function () {
+
+                onloads();
+                function onloads() {
+                    indexdata();
+                    getkefu();
+                    Textgpt();
+                    userinfo();
+                }
+
+
+                function getkefu() {
+                    var url = "/ashx/BusServer.ashx";
+                    var pm = {
+                        action: "getkefu",
+                        time: Math.random()
+                    };
+                    $.ajaxSettings.async = false;
+                    $.getJSON(url, pm,
+                        function (json) {
+                            if (json.State == "200") {
+                                $("#TelgramChannel").val(json.JsonResult.telegram_channel);
+                                $("#TelgramChannel1").html(json.JsonResult.telegram_channel);
+                            }
+                        });
+                }
+
+
+                function indexdata() {
+                    var url = "/ashx/BusServer.ashx";
+                    var pm = {
+                        action: "indexdata",
+                        time: Math.random()
+                    };
+                    $.ajaxSettings.async = false;
+                    $.getJSON(url, pm,
+                        function (json) {
+                            if (json.State == "200") {
+                                var html = "";
+                                for (var i = 0; i < json.JsonResult.length; i++) {
+                                    html += json.JsonResult[i].context + "&nbsp;&nbsp;";
+                                }
+                                $("#intext").html(html);
+                                var ss = html.length * 0.05 + 5
+                                $(".marquee-content").css("animation", "marqueeAnim " + ss + "s linear 0s infinite");
+                            }
+                        });
+                }
+
+                function Textgpt() {
+                    var url = "/ashx/BusServer.ashx";
+                    var pm = {
+                        action: "noticeinfo",
+                        time: Math.random()
+                    };
+                    $.ajaxSettings.async = false;
+                    $.getJSON(url, pm,
+                        function (json) {
+                            if (json.State == "200") {
+                                if (json.JsonResult.notice != "") {
+                                    var main_prop_txt1 = "Notice";
+                                    var main_prop_txt2 = json.JsonResult.notice;
+                                    var main_prop_txt3 = "OK";
+                                    var xkefu = "";
+                                    //xkefu += "<div style='margin-top:10px;width:80%;height:24px;margin:0 auto;'><div style='float:left;'><img src='/img/line1.png' style='height:20px; width:20px;margin:2px;' /></div><div style='float:left;line-height:24px; margin-left:5px;color:#fff;' onclick='kefu4()'>Telegram：<font calss='support12' style='color:red;text-decoration:underline'>Click to join</font></div></div>";
+                                    //xkefu += "<div style='margin-top:10px;width:100%;height:24px;'><div style='float:left;'><img src='/img/bf.png' style='height:20px; width:20px;margin:2px;' /> </div><div style='float:left;line-height:24px; margin-left:5px;' onclick='kefu5()'><font calss='support12' style='color:#FFE393;text-decoration:underline'>Novice must read tutorial</font></div></div>";
+                                    $('.indexdiv').show();
+                                    $("#noctie").show();
+                                    $("#notices").html(xkefu);
+                                    $("#notice_info").html(main_prop_txt2);
+                                    $("#notice_btn").html(main_prop_txt3);
+                                    $("#notice_title").html(main_prop_txt1);
+                                }
+                            }
+                        });
+                }
+
+                function userinfo() {
+                    var url = "/ashx/BusServer.ashx";
+                    var pm = {
+                        action: "userinfo",
+                        time: Math.random()
+                    };
+                    $.ajaxSettings.async = false;
+                    $.getJSON(url, pm,
+                        function (json) {
+                            if (json.State == "200") {
+                                $("#amount").html("R$ " + json.JsonResult.amount);
+                                $("#amount1").html("R$ " + json.JsonResult.wi_amount);
+                            }
+                        });
+                }
+
+
+
+                $(document).on("click", '.buy', function () {
+                    var value = $(this).attr("value");
+                    var url1 = "/main/proinfo.html?id=" + value + "&time=" + Math.random();
+                    layer.open({
+                        type: 2,
+                        title: false,
+                        area: ['100%', '100%'],
+                        shadeClose: true,
+                        isOutAnim: false,
+                        closeBtn: 0,
+                        anim: 5,
+                        shade: [0.8, '#393D49'],
+                        maxmin: false,
+                        content: url1
+                    });
+                });
+
+
+                $(document).on("click", '#qx1', function () {
+                    $('.indexdiv').hide();
+                    $("#noctie1").hide();
+                });
+
+                $(document).on("click", '#close', function () {
+                    $('.indexdiv').hide();
+                    $("#noctie").hide();
+                });
+                $(document).on("click", '#Confirm', function () {
+                    $('.indexdiv').hide();
+                    $("#noctie").hide();
+
+                    var url = document.getElementById("TelgramChannel").value;
+                    if (window.android) {
+                        window.android.callAndroid("open," + url);
+                        return;
+                    }
+                    if (window.webkit && window.webkit.messageHandlers) {
+                        window.webkit.messageHandlers.nativeExt.postMessage({ msg: 'open,' + url });
+                        return;
+                    }
+                    window.open(url, "_blank")
+                });
+
+                $(document).on("click", '#Invite', function () {
+                    location.href = "/main/team.html?time=" + Math.random();
+                });
+
+                $(document).on("click", '#checkin', function () {
+                    var url1 = "/main/prop/checkin.html?time=" + Math.random();
+                    layer.open({
+                        type: 2,
+                        title: false,
+                        area: ['100%', '100%'],
+                        shadeClose: true,
+                        isOutAnim: false,
+                        closeBtn: 0,
+                        anim: 5,
+                        shade: [0.8, '#393D49'],
+                        maxmin: false,
+                        content: url1
+                    });
+                });
+
+
+                $(document).on("click", '#HOW', function () {
+                    location.href = "/main/vip.html?time=" + Math.random();
+                });
+
+                $(document).on("click", '#Customer', function () {
+                    var url1 = "/main/cs.html?time=" + Math.random();
+                    layer.open({
+                        type: 2,
+                        title: false,
+                        area: ['100%', '100%'],
+                        shadeClose: true,
+                        isOutAnim: false,
+                        closeBtn: 0,
+                        anim: 5,
+                        shade: [0.8, '#393D49'],
+                        maxmin: false,
+                        content: url1
+                    });
+                });
+
+
+
+                $(document).on("click", '#down', function () {
+                    var url = "/DownLoad.html?time=" + Math.random();
+                    parent.layer.open({
+                        type: 2,
+                        title: false,
+                        area: ['100%', '175px'],
+                        offset: 'b',
+                        shadeClose: true,
+                        isOutAnim: false,
+                        closeBtn: 0,
+                        anim: 5,
+                        shade: [0.8, '#393D49'],
+                        maxmin: false,
+                        content: url
+                    });
+                });
+                $(document).on("click", '#Recharge', function () {
+                    var url1 = "/main/prop/recharge.html?time=" + Math.random();
+                    layer.open({
+                        type: 2,
+                        title: false,
+                        area: ['100%', '100%'],
+                        shadeClose: true,
+                        isOutAnim: false,
+                        closeBtn: 0,
+                        anim: 5,
+                        shade: [0.8, '#393D49'],
+                        maxmin: false,
+                        content: url1
+                    });
+                });
+
+                $(document).on("click", '.navtab', function () {
+                    var urlx = $(this).attr("url");
+                    location.href = urlx + "?time=" + Math.random();
+                });
+            });
+        });
+    </script>
+
+<link id="layuicss-layer" rel="stylesheet" href="./Lar_files/layer(1).css" media="all"><link id="layuicss-laydate" rel="stylesheet" href="./Lar_files/laydate.css" media="all"></head>
+
+<body style="min-height: 100%; width: 100%; background-size: 100% auto; background: linear-gradient(to top, #071730, #071730); ">
+    <input type="hidden" id="proid" value="0">
+    <input type="hidden" id="TelgramChannel" value="https://t.me/+7tzUqUG_PCpmOWJh">
+    <div class="indexdiv" style="display: none;"></div>
+    <div style="position: fixed; top: 50%; left: 50%; transform: translate(-48%, -50%); text-align: center; margin: 0px auto; z-index: 102; height: 470px; width: 100%; max-width: 450px; display: none;" id="noctie">
+        <div style="position: relative; width: 100%; text-align: center; background: none; height: auto; margin: 0 auto; width: 88%; background: #071730; background-size: 100% 100%; height: 460px; border-radius: 10px; color: #fff; margin-top: 10px; ">
+            <div style="padding-top:33px; font-weight:bold;font-size:26px;">
+                Notificar
+            </div>
+            <div style="width:85%;position:relative; margin:0 auto;  height:auto; overflow:hidden;border:0px; padding-top:50px; font-size:12px;line-height:19px; text-align:left; ">
+                <div style="max-height: 320px; overflow: scroll; font-size: 12px !important; " id="notice_info"><p>1、Bônus de inscrição R$ 20</p><p><br></p><p>2、Recompensa diária de login R$ 1</p><p><br></p><p>3、Convide os subordinados a adquirir equipamentos e receba uma recompensa em dinheiro de 39% do valor do investimento.</p><p><br></p><p>4<span style="text-wrap-mode: wrap;">、</span>Os saques estão disponíveis 24 horas por dia</p><p><br></p></div>
+            </div>
+            <div style=" position: absolute; bottom: 35px; text-align:left;left:28px; width: 100%; ">
+                <button class="cmbtn" id="Confirm" style="height: 35px; margin-top: 10px; border-radius: 25px !important; line-height: 35px; background: linear-gradient(to left,#002759,#002759); color: #fff; border: 0px; width: 80%; box-shadow: 8px 8px 8px rgb(0 0 0 / 60%); ">
+                    Junte-se ao canal oficial do Telegram<br>
+                    <!--<span id="TelgramChannel1" style="color: #fff;  text-decoration: underline; "></span>-->
+                </button>
+
+                <button class="cmbtn" id="close" style="height: 35px; margin-top:10px;  border-radius: 25px !important; line-height: 35px; background: linear-gradient(to right,#ddc088,#c0892f); color: #fff; border: 0px; width: 80%; box-shadow: 8px 8px 8px rgb(0 0 0 / 60%); ">
+                    <span style="color: #fff;   ">Eu entendo</span>
+                </button>
+            </div>
+
+            <div style="line-height:24px; color:#000; font-size:12px; position:absolute; width:100%; margin-top:5px; bottom:30px;  text-align:center;" id="notices"></div>
+        </div>
+    </div>
+
+
+    <div style=" max-width:450px; margin:0 auto;  ">
+        <div class="top1"></div>
+        <div style="height:50px;line-height:50px;  text-align:center;  font-weight:bold; color:#fff;">Lar</div>
+
+        <div style="  text-align: center; margin-bottom: 60px;  ">
+            <div style=" width: 100%; margin: 0 auto; background: #071730; border-radius: 0px !important; border: 0px; ">
+                <img src="./Lar_files/banner.jpg" style="width:100%;">
+                <!--<div class="layui-carousel" id="test2" style="text-align: center; margin: 0 auto; width: 100%; background: #071730; border:0px; border-radius: 0px !important;">
+            <div carousel-item="" style="text-align: center; width: 100%; margin: 0 auto; background: #071730; border: 0px; border-radius: 0px !important;">
+
+            </div>
+        </div>-->
+            </div>
+
+            <div style="width: 98%; margin: 0 auto; margin-top: 20px; height: auto; overflow: hidden; ">
+                <div style="width:100%; margin:0 auto; margin-bottom:10px;">
+                    <div style="width:49%;float:left; border-radius: 10px !important;">
+                        <button class="layui-btn" id="Invite" style="width: 100%; font-size: 13px; text-align:center; height: 50px; border-radius: 5px !important; background: url(/ui/s1.png) no-repeat; background-size: 100% 100%;" type="button">
+                            <div style="margin-left:22%;">
+                                Prêmios de convite
+                            </div>
+                        </button>
+                    </div>
+                    <div style="width:49%;float:left; margin-left:2%; ">
+                        <button class="layui-btn" id="HOW" style="width: 100%; text-align: center; font-size: 13px; height: 50px; border-radius: 5px !important; background: url(/ui/s2.png) no-repeat; background-size: 100% 100%;" type="button">
+                            <div style="margin-left:22%;">
+                                Como ganhar dinheiro
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div style="width: 98%; margin: 0 auto; margin-top: 20px; height: auto; overflow: hidden; ">
+                <div style="width: 100%; margin: 0 auto;  background: url(/ui/bg3.png) no-repeat;  height: auto; overflow: hidden; border-radius: 5px !important; text-align: center; ">
+                    <div style="padding-bottom: 10px;  height: auto; overflow: hidden; ">
+                        <div style="width: 24%; float: left; margin-left: 0.5%;  color:#ff00dc ">
+                            <div id="Recharge" style="width:100%;font-size: 12px; height:70px;padding:0px;  ">
+                                <div style="margin-top:10px;">
+                                    <img src="./Lar_files/b1.png" style="height:40px;">
+                                </div>
+                                <div style="margin-top:2px;color:#fff;">
+                                    Recarregar
+                                </div>
+                            </div>
+                        </div>
+                        <div style="width:24%;float:left; margin-left:1%; ">
+                            <div id="checkin" style="width:100%;  font-size: 12px;  padding:0px;height:70px;">
+                                <div style="margin-top:10px;">
+                                    <img src="./Lar_files/b2.png" style="height:40px;">
+                                </div>
+                                <div style="margin-top:2px;color:#fff;">
+                                    Check-in
+                                </div>
+                            </div>
+                        </div>
+                        <div style="width:24%;float:left; margin-left:1%; ">
+                            <div id="down" style="width:100%; font-size: 12px; padding:0px;height:70px;">
+                                <div style="margin-top:10px;">
+                                    <img src="./Lar_files/b3.png" style="height:40px;">
+                                </div>
+                                <div style="margin-top:2px;color:#fff;">
+                                    Download
+                                </div>
+                            </div>
+                        </div>
+                        <div style="width:24%;float:left; margin-left:1%; ">
+                            <div id="Customer" style="width:100%;  font-size: 12px; padding:0px;height:70px;">
+                                <div style="margin-top:10px;">
+                                    <img src="./Lar_files/b4.png" style="height:40px;">
+                                </div>
+                                <div style="margin-top:2px;color:#fff;">
+                                    Serviço ao cliente
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div style="text-align: center; width: 98%; margin: 0 auto; margin-top:15px; background: #091427; padding-top:10px; padding-bottom: 10px; border-radius: 5px !important; height: auto; overflow: hidden; position: relative; ">
+                <div class="divWrap" style="padding: 10px; padding-top: 5px; padding-bottom: 5px;">
+                    <div style="float: left; width: 10%; font-size: 12px; ">
+                        <img src="./Lar_files/hot.png" style="height:17px;margin-right:5px;">
+                    </div>
+                    <div class="div" style="float: left; width: 80%; color: #394969;">
+                        <div class="marquee-root">
+                            <div class="marquee-content" id="intext" style="animation: 107.95s linear 0s infinite normal none running marqueeAnim;">******7105 Recarregar R$ 2500 &nbsp;&nbsp;******2458 Recarregar R$ 1500 &nbsp;&nbsp;******1555 Recarregar R$ 1500 &nbsp;&nbsp;******2653 Recarregar R$ 1500 &nbsp;&nbsp;******0445 Recarregar R$ 1500 &nbsp;&nbsp;******3887 Recarregar R$ 1500 &nbsp;&nbsp;******1785 Recarregar R$ 150 &nbsp;&nbsp;******2050 Recarregar R$ 60 &nbsp;&nbsp;******7856 Recarregar R$ 550 &nbsp;&nbsp;******7205 Recarregar R$ 1500 &nbsp;&nbsp;******1426 Recarregar R$ 960 &nbsp;&nbsp;******5662 Recarregar R$ 150 &nbsp;&nbsp;******0314 Recarregar R$ 60 &nbsp;&nbsp;******1532 Recarregar R$ 550 &nbsp;&nbsp;******0172 Recarregar R$ 960 &nbsp;&nbsp;******3285 Recarregar R$ 1500 &nbsp;&nbsp;******7620 Recarregar R$ 1500 &nbsp;&nbsp;******2576 Recarregar R$ 550 &nbsp;&nbsp;******5156 Recarregar R$ 550 &nbsp;&nbsp;******3654 Recarregar R$ 60 &nbsp;&nbsp;******8416 Recarregar R$ 960 &nbsp;&nbsp;******2327 Recarregar R$ 2500 &nbsp;&nbsp;******7407 Recarregar R$ 550 &nbsp;&nbsp;******3232 Recarregar R$ 290 &nbsp;&nbsp;******7237 Recarregar R$ 290 &nbsp;&nbsp;******4533 Recarregar R$ 60 &nbsp;&nbsp;******4418 Recarregar R$ 1500 &nbsp;&nbsp;******0704 Recarregar R$ 290 &nbsp;&nbsp;******8811 Recarregar R$ 550 &nbsp;&nbsp;******0803 Recarregar R$ 290 &nbsp;&nbsp;******0801 Recarregar R$ 960 &nbsp;&nbsp;******5267 Recarregar R$ 550 &nbsp;&nbsp;******3060 Recarregar R$ 150 &nbsp;&nbsp;******4241 Recarregar R$ 550 &nbsp;&nbsp;******5501 Recarregar R$ 2500 &nbsp;&nbsp;******8154 Recarregar R$ 150 &nbsp;&nbsp;******0218 Recarregar R$ 290 &nbsp;&nbsp;******1226 Recarregar R$ 60 &nbsp;&nbsp;******8746 Recarregar R$ 2500 &nbsp;&nbsp;******6711 Recarregar R$ 150 &nbsp;&nbsp;******8171 Recarregar R$ 150 &nbsp;&nbsp;******8172 Recarregar R$ 960 &nbsp;&nbsp;******7171 Recarregar R$ 150 &nbsp;&nbsp;******1430 Recarregar R$ 960 &nbsp;&nbsp;******3101 Recarregar R$ 60 &nbsp;&nbsp;******2528 Recarregar R$ 2500 &nbsp;&nbsp;******1225 Recarregar R$ 150 &nbsp;&nbsp;******0234 Recarregar R$ 2500 &nbsp;&nbsp;******2208 Recarregar R$ 550 &nbsp;&nbsp;******6418 Recarregar R$ 550 &nbsp;&nbsp;</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="width: 100%; margin-top: 15px; ">
+                <div style="width: 98%; margin: 0 auto; margin-bottom: 10px; height:100px;">
+                    <div style="width:49%;float:left; border-radius: 10px !important;">
+                        <div class="layui-btn" id="Invite" style="width: 100%; font-size: 13px; position:relative; text-align: center; height: 80px; border-radius: 5px !important; background: url(/ui/bg3.png) no-repeat; background-size: 100% 100%; " type="button">
+
+                            <div style="position:absolute; bottom:35px; right:30px; color:#fff; " id="amount">R$ 21.00</div>
+                            <div style="position:absolute; bottom:10px; right:30px; color:#fff; ">
+                                Saldo da conta
+                            </div>
+                        </div>
+                    </div>
+                    <div style="width:49%;float:left; margin-left:2%; ">
+                        <div class="layui-btn" id="HOW" style="width: 100%; text-align: center; position: relative; font-size: 13px; height: 80px; border-radius: 5px !important; background: url(/ui/bg3.png) no-repeat; background-size: 100% 100%; " type="button">
+                            <div style="position:absolute; bottom:35px; right:30px; color:#fff; " id="amount1">R$ 0.00</div>
+                            <div style="position:absolute; bottom:10px; right:30px; color:#fff; ">
+                                Valor da retirada
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <nav class="nav" style="background-size:100% 100%; height:60px; ">
+            <div style="color: #AF873F !important; font-weight: bold; ">
+                <img src="./Lar_files/1.png" style="height: 25px;"> <br>
+                <span id="nav_btn1">Lar</span>
+            </div>
+            <div url="/main/Finance.html" class="navtab ">
+                <img src="./Lar_files/2.png" class="gray" style="height: 25px;"> <br>
+                <span id="nav_btn2">Produto</span>
+            </div>
+            <div url="/main/vip.html" class="navtab ">
+                <img src="./Lar_files/3.png" class="gray" style="height: 60px; margin-top: -20px;"> <br>
+            </div>
+            <div url="/main/team.html" class="navtab">
+                <img src="./Lar_files/4.png" class="gray" style="height: 25px; "> <br>
+                <span id="nav_btn3">Equipe</span>
+            </div>
+            <div url="/main/mine.html" class="navtab">
+                <img src="./Lar_files/5.png" class="gray" style="height: 25px;"> <br>
+                <span id="nav_btn4">Meu</span>
+            </div>
+        </nav>
+    </div>
+
+
+
+<a href="https://sl-br.com/main/index.html?time=0.7183712571036716" target="_blank" style="display:none;"><span id="jump"></span></a></body></html>

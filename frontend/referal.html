@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prêmios de Convite</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #3b82f6;
+            --secondary-color: #10b981;
+            --background-color: #f4f4f5;
+            --text-color: #18181b;
+            --card-background: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .content {
+            margin: 20px 0;
+        }
+
+        .content-section {
+            background: var(--card-background);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .content-section h2 {
+            font-size: 20px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .content-section p {
+            color: #71717a;
+            font-size: 14px;
+        }
+
+        .referral-code-container {
+            background: var(--card-background);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .referral-code-container h3 {
+            font-size: 18px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .referral-code-container .code {
+            font-size: 16px;
+            color: #333;
+            word-break: break-all;
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #71717a;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            color: var(--primary-color);
+        }
+
+        .nav-item i {
+            margin-bottom: 5px;
+        }
+
+        .nav-item span {
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Prêmios de Convite</h1>
+            <p>Descubra como ganhar recompensas exclusivas ao convidar amigos</p>
+        </header>
+
+        <section class="content">
+            <div class="content-section">
+                <h2>Como Funciona</h2>
+                <p>· Quando os amigos convidados por você se registram e concluem um investimento, você recebe <strong>37% de cashback</strong> imediatamente.</p>
+                <p>· Quando membros do seu <strong>2º nível</strong> investem, você recebe <strong>1% de cashback</strong>.</p>
+                <p>· Quando membros do seu <strong>3º nível</strong> investem, você recebe <strong>1% de cashback</strong>.</p>
+                <p>Os bônus em dinheiro serão <strong>enviados instantaneamente</strong> para o saldo da sua conta assim que seus membros de equipe investirem.</p>
+            </div>
+
+            <div class="content-section">
+                <h2>Exemplo</h2>
+                <p>Se você convidar um amigo e ele fizer um investimento inicial de <strong>R$180</strong>, você receberá imediatamente um bônus de <strong>R$66,6</strong>. (A recompensa de convite é concedida apenas no <strong>primeiro investimento</strong> de cada membro convidado.)</p>
+            </div>
+
+            <!-- Seção para exibir o código de indicação do usuário -->
+            <div class="referral-code-container" id="referral-section" style="display: none;">
+                <h3>Seu Código de Indicação</h3>
+                <p class="code" id="referral-code"></p>
+            </div>
+        </section>
+
+        <nav class="bottom-nav">
+            <a href="home.html" class="nav-item active">
+                <i data-feather="home"></i>
+                <span>Lar</span>
+            </a>
+            <a href="My products and income.html" class="nav-item">
+                <i data-feather="package"></i>
+                <span>Produtos</span>
+            </a>
+            <a href="referal.html" class="nav-item">
+                <i data-feather="users"></i>
+                <span>Equipe</span>
+            </a>
+            <a href="www.menu.html" class="nav-item">
+                <i data-feather="user"></i>
+                <span>Menu</span>
+            </a>
+        </nav>
+    </div>
+
+    <script>
+        // Initialize Feather icons
+        feather.replace();
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const token = localStorage.getItem("token");
+            if (!token) {
+                // Se não tiver token, redireciona para login
+                window.location.href = "http://localhost:3000/login.html";
+                return;
+            }
+
+            // Faz requisição para /me para obter referral_code
+            fetch("http://localhost:3000/me", {
+                method: "GET",
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.error) {
+                    alert("Erro ao obter código de indicação, faça login novamente.");
+                    window.location.href = "/login";
+                } else {
+                    // Exibe a seção do referral
+                    document.getElementById("referral-section").style.display = "block";
+                    document.getElementById("referral-code").innerText = data.referral_code;
+                }
+            })
+            .catch(err => {
+                console.error("Erro ao obter referral_code:", err);
+                alert("Erro interno. Tente novamente.");
+            });
+        });
+    </script>
+</body>
+</html>

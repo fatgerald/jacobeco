@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)https://sl-br.com/login.html?time=0.8920410701292081 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>Fazer login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="stylesheet" href="./Fazer login_files/layui.css">
+    <script src="./Fazer login_files/layui.js.baixados"></script>
+    <script src="./Fazer login_files/comm.js.baixados"></script>
+    <script src="./Fazer login_files/jquery-1.11.0.min.js.baixados"></script>
+    <script src="./Fazer login_files/i18n.js.baixados"></script>
+    <link href="./Fazer login_files/main.css" rel="stylesheet">
+    <script type="text/javascript">
+        layui.config({
+            base: '/Lay/lay/modules/'
+        }).use(['form', 'dropdown', 'layedit', 'jquery', 'layer', 'cookie'], function () {
+            var $ = layui.jquery, layer = layui.layer;
+            var cookie = layui.cookie;
+            var form = layui.form;
+            $().ready(function () {
+                check();
+                getkf();
+
+                function check() {
+                    var rememberpassword = localStorage.getItem("rememberpassword");
+                    if (rememberpassword == "1") {
+                        var moblie = localStorage.getItem("moblie");
+                        var password = localStorage.getItem("password");
+                        $("#moblie").val(moblie);
+                        $("#password").val(password);
+                        $("#rememberpassword").prop("checked", true);
+                        form.render();
+                    }
+                }
+
+
+                form.on('checkbox(rememberpassword)', function (data) {
+                    if (data.elem.checked) {
+                        localStorage.setItem("rememberpassword", 1);
+                    } else {
+                        localStorage.setItem("rememberpassword", 0);
+                    }
+                });
+
+                $("#service").click(function () {
+                    var androidurl = $("#kf").val();
+                    if (window.android) {
+                        window.android.callAndroid("open," + androidurl)
+                        return;
+                    }
+                    if (window.webkit && window.webkit.messageHandlers) {
+                        window.webkit.messageHandlers.nativeExt.postMessage({ msg: 'open,' + androidurl });
+                        return;
+                    }
+                    $("#jump").parent().attr("href", androidurl), $("#jump").trigger("click");
+                });
+
+                $("#down").click(function () {
+                    var url = "/DownLoad.html?time=" + Math.random();
+                    parent.layer.open({
+                        type: 2,
+                        title: false,
+                        area: ['100%', '145px'],
+                        offset: 'b',
+                        shadeClose: true,
+                        isOutAnim: false,
+                        closeBtn: 0,
+                        anim: 2,
+                        shade: [0.8, '#393D49'],
+                        maxmin: false,
+                        content: url
+                    });
+                });
+
+
+                function select() {
+                    var url = "/select.html?time=" + Math.random();
+                    layer.open({
+                        type: 2,
+                        title: false,
+                        area: ['100%', '40%'],
+                        offset: 'b',
+                        shadeClose: true,
+                        isOutAnim: false,
+                        closeBtn: 0,
+                        anim: 2,
+                        shade: [0.8, '#393D49'],
+                        maxmin: false,
+                        content: url
+                    });
+                }
+                function getkf() {
+                    var url = "/ashx/LoginServer.ashx";
+                    var pm = {
+                        action: "getcon",
+                        time: Math.random()
+                    };
+                    $.ajaxSettings.async = false;
+                    $.getJSON(url, pm,
+                        function (json) {
+                            if (json.State == "200") {
+                                $("#kf").val(json.JsonResult.kf);
+                            }
+                            if (json.State == "300") {
+                                error(json.JsonResult);
+                            }
+                        });
+                }
+
+                $("#login").click(function () {
+                    var moblie = $("#moblie").val();
+                    var moblie_qu = $("#moblie_qu_hid").val();
+                    var password = $("#password").val();
+                    var index = layer.load();
+                    var url = "/ashx/LoginServer.ashx";
+                    var pm = {
+                        action: "login",
+                        moblie_qu: moblie_qu,
+                        moblie: moblie,
+                        password: password,
+                        time: Math.random()
+                    };
+                    $.ajaxSettings.async = false;
+                    $.getJSON(url, pm,
+                        function (json) {
+                            if (json.State == "200") {
+                                if ($("#rememberpassword").prop("checked")) {
+                                    localStorage.setItem("moblie", moblie);
+                                    localStorage.setItem("password", password);
+                                }
+                                location.href = "/main/index.html?time=" + Math.random();
+                            }
+                            if (json.State == "300") {
+                                error(json.JsonResult);
+                            }
+                            layer.close(index);
+                        });
+                });
+
+                $("#Forgot").click(function () {
+                    var url = "/RetrievePassword.html?time" + Math.random();
+                    top.layer.open({
+                        type: 2,
+                        title: false,
+                        area: ['100%', '100%'],
+                        shadeClose: true,
+                        isOutAnim: false,
+                        closeBtn: 0,
+                        anim: 2,
+                        shade: [0.8, '#393D49'],
+                        maxmin: false,
+                        content: url
+                    });
+                });
+
+
+                $("#signup").click(function () {
+                    location.href = "/reg.html?time=" + Math.random();
+                });
+
+                $("#signup1").click(function () {
+                    location.href = "/reg.html?time=" + Math.random();
+                });
+
+
+
+                $("#selectimg").click(function () {
+
+                    var url = "/selectlan.html?time" + Math.random();
+                    top.layer.open({
+                        type: 2,
+                        title: false,
+                        area: ['100%', '100%'],
+                        shadeClose: true,
+                        isOutAnim: false,
+                        closeBtn: 0,
+                        anim: 2,
+                        shade: [0.8, '#393D49'],
+                        maxmin: false,
+                        content: url
+                    });
+                });
+
+            });
+        });
+    </script>
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+
+        .divxxx {
+            width: 60px;
+            height: 60px;
+            position: fixed;
+            z-index: 101;
+            bottom: 15%;
+            right: -15px;
+        }
+
+        .layui-form-checkbox[lay-skin=primary]:hover i {
+            border-color: #000;
+            color: #fff;
+        }
+
+        .layui-form-item .layui-form-checkbox[lay-skin=primary] {
+            margin-top: 4px;
+        }
+
+        .layui-form-item .layui-form-checkbox[lay-skin=primary] {
+            margin-top: 2px;
+            padding-left: 22px;
+            background: rgba(0, 0, 0, 0.00) !important;
+        }
+
+
+        .layui-form-item .layui-form-checkbox[lay-skin=primary] {
+            margin-top: 2px;
+            padding-left: 22px;
+        }
+
+        .layui-form-checkbox[lay-skin=primary] span {
+            padding-left: 0;
+            padding-right: 15px;
+            line-height: 18px;
+            background: 0 0;
+            color: #fff;
+        }
+
+        .layui-form-pane .layui-form-checkbox {
+            margin: 5px 3px 4px 2px;
+        }
+
+        .layui-form-checked[lay-skin=primary] i {
+            border-color: #000 !important;
+            background: linear-gradient(to right, #fff, #fff);
+            color: #000 !important;
+            border-radius: 5px;
+        }
+
+        .layui-form-item .layui-form-checkbox[lay-skin=primary] {
+            margin-top: 2px;
+            padding-left: 22px;
+            background: #fff;
+        }
+
+
+        .layui-form-item {
+            margin-bottom: 6px;
+            clear: both;
+            *zoom: 1;
+        }
+
+        div#div1 {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            z-index: -1;
+        }
+
+            div#div1 > img {
+                height: 100%;
+                width: 100%;
+                border: 0;
+            }
+
+        .inputdiv {
+            display: flex;
+            border: 1px solid #122149 !important;
+            background-color: #122149 !important;
+            height: 45px;
+            line-height: 45px;
+            padding: 0px 10px;
+            border-radius: 10px;
+            color: #000;
+            box-shadow: 0 2px 5px 1px rgb(0 0 0 / 30%);
+        }
+
+        .layui-input {
+            border-style: none;
+            background-color: #122149 !important;
+        }
+
+        .bgimg {
+            position: absolute;
+            height: 95%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            margin: auto;
+            width: 90%;
+            padding: 10px;
+            padding-top: 4px;
+            background: rgba(255, 255, 255, 0.50);
+            color: #000;
+            /*border-width: 1px;
+            border-color: #e6e6e6;
+            border-style: solid;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px 0 rgb(0 0 0 / 50%);*/
+            border-radius: 5px;
+        }
+
+
+
+        .topname {
+            line-height: 46px;
+            font-weight: 700;
+            width: 50%;
+            text-align: center;
+            color: #fff;
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            margin: auto;
+        }
+
+        .layui-container {
+            position: relative;
+            margin: 0 auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+        .ttt {
+            margin: 0;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            z-index: 10;
+            width: 100%;
+            max-width: 450px;
+            margin-top: 200px;
+        }
+
+        div#div1 {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            z-index: -1;
+        }
+
+            div#div1 > img {
+                height: 100%;
+                width: 100%;
+                border: 0;
+            }
+
+      
+        input::-webkit-input-placeholder {
+            color: #2D3B60;
+        }
+    </style>
+<link id="layuicss-layer" rel="stylesheet" href="./Fazer login_files/layer.css" media="all"></head>
+<body style="margin: 0; overflow: hidden;">
+    <video autoplay loop muted playsinline 
+           style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1;" 
+           poster="https://image.mux.com/Qw43XeJCpbhMZk3I00pv2Dk3UWK7UiAWb/thumbnail.webp?time=0" 
+           src="blob:https://jacobandco.com/d0c9ab4c-89eb-44de-8b1b-737a1e979c91">
+    </video>
+    <input type="hidden" id="moblie_qu_hid" value="55">
+    <input type="hidden" id="kf" value="">
+    <!--<div id="div1">
+        <img src="/img/loginbg.png" style=" opacity: 0.10; filter: alpha(opacity=10); " />
+    </div>-->
+    <div style="width: 100%; margin: 0 auto; background: rgba(0, 148, 255, 0.00); border-bottom: 0px solid #117546; z-index: 11; " class="top">
+        <div style="float:left; text-align:left; line-height:46px;width:50%;">
+
+        </div>
+        <div style="float:right; text-align:right; line-height:46px;width:50%;">
+            <!--<div style="color:#fff;" id="signup">
+                <span style="font-size: 14px; margin-right:15px;color:#fff;" id="lancn">No account ? <font style="font-weight:bold;">go to register</font></span>
+            </div>-->
+        </div>
+    </div>
+    <div style=" max-width: 450px; margin: 0 auto; position: relative;">
+        <div style="position: absolute; left: 25px; top: 105px; font-weight: bold; color: #666; font-size: 15px; ">
+            Faça login
+        </div>
+        <div style=" position:absolute; left:25px; top:135px; font-weight:bold;color:#fff; font-size:22px;">
+            bem-vindo à  <img src="https://www.datocms-assets.com/99008/1685443206-jacob-co-light.svg" alt="Jacob & Co" style="max-width: 50%; height: auto;">
+        </div>
+     
+        <div style="width:90%; margin:0 auto; padding-top:240px;">
+            <div class="layui-form">
+                <div class="layui-form-item" style="height:48px;">
+                    <div class="inputdiv">
+                        <img src="./Fazer login_files/i1.png" style="margin-right:5px;color:#000; height:21px; margin-top:11px;">
+                        <font style="color: #eee; height:45px;line-height:46px;" id="moblie_qu">+55</font>
+                        <i id="demo6" class="layui-icon layui-icon-triangle-d" style="margin-left: 2px; margin-right: 2px; color: #eee;"></i>
+                        <input type="number" pattern="[0-9]*" style="height: 45px; color: #fff; background: #122149; border-radius: 25px; " id="moblie" oninput="if(value.length&gt;11)value=value.slice(0,11)" placeholder="Por favor insira o número do celular" class="layui-input" autocomplete="off">
+                    <div data-lastpass-icon-root="" style="position: relative !important; height: 0px !important; width: 0px !important; float: left !important;"><template shadowrootmode="closed"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" data-lastpass-icon="true" style="position: absolute; cursor: pointer; height: 22px; max-height: 22px; width: 22px; max-width: 22px; top: 11.5px; left: -27px; z-index: auto; color: rgb(186, 192, 202);"><rect x="0.680176" y="0.763062" width="22.6392" height="22.4737" rx="4" fill="currentColor"></rect><path fill-rule="evenodd" clip-rule="evenodd" d="M19.7935 7.9516C19.7935 7.64414 20.0427 7.3949 20.3502 7.3949C20.6576 7.3949 20.9069 7.64414 20.9069 7.9516V16.0487C20.9069 16.3562 20.6576 16.6054 20.3502 16.6054C20.0427 16.6054 19.7935 16.3562 19.7935 16.0487V7.9516Z" fill="white"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M4.76288 13.6577C5.68525 13.6577 6.43298 12.9154 6.43298 11.9998C6.43298 11.0842 5.68525 10.3419 4.76288 10.3419C3.8405 10.3419 3.09277 11.0842 3.09277 11.9998C3.09277 12.9154 3.8405 13.6577 4.76288 13.6577Z" fill="white"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M10.3298 13.6577C11.2521 13.6577 11.9999 12.9154 11.9999 11.9998C11.9999 11.0842 11.2521 10.3419 10.3298 10.3419C9.4074 10.3419 8.65967 11.0842 8.65967 11.9998C8.65967 12.9154 9.4074 13.6577 10.3298 13.6577Z" fill="white"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M15.8964 13.6577C16.8188 13.6577 17.5665 12.9154 17.5665 11.9998C17.5665 11.0842 16.8188 10.3419 15.8964 10.3419C14.974 10.3419 14.2263 11.0842 14.2263 11.9998C14.2263 12.9154 14.974 13.6577 15.8964 13.6577Z" fill="white"></path></svg></template></div></div>
+                </div>
+                <div class="layui-form-item" style="height:48px; margin-top:20px;">
+                    <div class="inputdiv">
+                        <img src="./Fazer login_files/i2.png" style="margin-right:5px;color:#000; height:21px; margin-top:11px;">
+                        <input type="password" id="password" style="height: 45px; color:#fff; border-radius: 25px; background: #122149;" maxlength="20" placeholder="Por favor, digite sua senha" autocomplete="off" class="layui-input">
+                    <div data-lastpass-icon-root="" style="position: relative !important; height: 0px !important; width: 0px !important; float: left !important;"><template shadowrootmode="closed"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" data-lastpass-icon="true" style="position: absolute; cursor: pointer; height: 22px; max-height: 22px; width: 22px; max-width: 22px; top: 11.5px; left: -27px; z-index: auto; color: rgb(186, 192, 202);"><rect x="0.680176" y="0.763062" width="22.6392" height="22.4737" rx="4" fill="currentColor"></rect><path fill-rule="evenodd" clip-rule="evenodd" d="M19.7935 7.9516C19.7935 7.64414 20.0427 7.3949 20.3502 7.3949C20.6576 7.3949 20.9069 7.64414 20.9069 7.9516V16.0487C20.9069 16.3562 20.6576 16.6054 20.3502 16.6054C20.0427 16.6054 19.7935 16.3562 19.7935 16.0487V7.9516Z" fill="white"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M4.76288 13.6577C5.68525 13.6577 6.43298 12.9154 6.43298 11.9998C6.43298 11.0842 5.68525 10.3419 4.76288 10.3419C3.8405 10.3419 3.09277 11.0842 3.09277 11.9998C3.09277 12.9154 3.8405 13.6577 4.76288 13.6577Z" fill="white"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M10.3298 13.6577C11.2521 13.6577 11.9999 12.9154 11.9999 11.9998C11.9999 11.0842 11.2521 10.3419 10.3298 10.3419C9.4074 10.3419 8.65967 11.0842 8.65967 11.9998C8.65967 12.9154 9.4074 13.6577 10.3298 13.6577Z" fill="white"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M15.8964 13.6577C16.8188 13.6577 17.5665 12.9154 17.5665 11.9998C17.5665 11.0842 16.8188 10.3419 15.8964 10.3419C14.974 10.3419 14.2263 11.0842 14.2263 11.9998C14.2263 12.9154 14.974 13.6577 15.8964 13.6577Z" fill="white"></path></svg></template></div></div>
+                </div>
+                <div class="layui-form-item" style="margin-top:20px; color:#000; text-align:center; font-size:14px;">
+                    <div style="float:left;width:48%;text-align:left; margin-left:2%; height:25px;line-height:25px; color:#fff;">
+                        <input type="checkbox" id="rememberpassword" lay-filter="rememberpassword" lay-skin="primary" title="Lembrar senha" style="margin-left:0px;"><div class="layui-unselect layui-form-checkbox" lay-skin="primary"><span>Lembrar senha</span><i class="layui-icon layui-icon-ok"></i></div>
+                    </div>
+                    <!--<div style="float: left; width: 50%; color: #2D3B60; text-align: right; height: 25px; line-height: 25px;" id="Forgot">Esqueceu sua senha?</div>-->
+                </div>
+              
+                <div class="layui-form-item" style="margin-top:40px; text-align:center;">
+                    <input class="layui-btn" id="login" value="Faça login agora" style="width: 50%; font-weight: 600; height: 42px; line-height: 42px; font-size: 16px; display: inline-block; background-image: linear-gradient(to right, #2F4582,#0536B7); color: #fff; border: 0px; border-radius: 25px; box-shadow: 0 5px 2.667vw 1px rgb(210 148 109 / 36%); " type="button">
+                </div>
+                <div style="color:#fff; text-align:center; margin-top:35px;">
+                    <span style="font-size: 14px; margin-right: 15px; color: #2D3B60; " id="lancn">Sem conta? <font id="signup" style="color: #02368C; margin-left: 5px; font-family: PingFang SC-Regular,PingFang SC; font-weight: bold;">Registre-se agora</font></span>
+                </div>
+            </div>
+        </div>
+    </div>
+	<script>
+	document.addEventListener("DOMContentLoaded", () => {
+		const loginButton = document.querySelector("#login"); // Seleciona o botão de login
+
+		loginButton.addEventListener("click", async () => {
+			const phone = document.querySelector("#moblie").value.trim();
+			const password = document.querySelector("#password").value.trim();
+
+			// Validação simples
+			if (!phone || !password) {
+				alert("Por favor, preencha todos os campos.");
+				return;
+			}
+
+			try {
+				const response = await fetch("http://localhost:3000/login", {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify({ phone, password }),
+				});
+
+				const data = await response.json();
+
+				if (!response.ok) {
+					throw new Error(data.error || "Erro no login.");
+				}
+
+				// Salva o user_id e token no localStorage
+				localStorage.setItem("user_id", data.user_id);
+				localStorage.setItem("token", data.token);
+
+				alert("Login bem-sucedido!");
+				window.location.href = "home.html"; // Redireciona para a página home
+			} catch (error) {
+				console.error("Erro:", error.message);
+				alert("Erro ao realizar login. Verifique suas credenciais.");
+			}
+		});
+	});
+	</script>
+
+
+
+
+<a href="https://sl-br.com/login.html?time=0.8920410701292081" target="_blank" style="display:none;"><span id="jump"></span></a></body></html>

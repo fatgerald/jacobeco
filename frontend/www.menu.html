@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Página</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #3b82f6;
+            --secondary-color: #10b981;
+            --background-color: #f4f4f5;
+            --text-color: #18181b;
+            --card-background: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .action-card {
+            background: var(--card-background);
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .action-card:hover {
+            transform: scale(1.05);
+        }
+
+        .action-card i {
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .action-card span {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .account-summary {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .account-card {
+            background: var(--card-background);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .account-card h2 {
+            color: var(--primary-color);
+            font-size: 22px;
+            margin-bottom: 5px;
+        }
+
+        .account-card p {
+            color: #71717a;
+            font-size: 14px;
+        }
+
+        .daily-checkin {
+            background: linear-gradient(145deg, #6366f1, #8b5cf6);
+            color: white;
+            border-radius: 15px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .daily-checkin-text {
+            flex: 1;
+            margin-right: 15px;
+        }
+
+        .daily-checkin h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .daily-checkin-btn {
+            background: white;
+            color: #6366f1;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .daily-checkin-btn:hover {
+            background: #f1f5f9;
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #71717a;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            color: var(--primary-color);
+        }
+
+        .nav-item i {
+            margin-bottom: 5px;
+        }
+
+        .nav-item span {
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Bem-vindo</h1>
+            <p>Conheça mais sobre nossa plataforma e como ela pode ajudá-lo a alcançar seus objetivos</p>
+        </header>
+
+         <section class="quick-actions">
+            <div class="action-card">
+                <i data-feather="info"></i>
+                <span>Sobre Nós</span>
+            </div>
+            <div class="action-card">
+                <i data-feather="phone"></i>
+                <span>Contato</span>
+            </div>
+            <div class="action-card">
+                <i data-feather="users"></i>
+                <span>Equipe</span>
+            </div>
+            <div class="action-card">
+                <i data-feather="log-out"></i>
+                <span>Sair</span>
+            </div>
+            <div class="action-card">
+                <i data-feather="book"></i>
+                <span>Regras</span>
+            </div>
+            <div class="action-card">
+                <i data-feather="download"></i>
+                <span>Baixar App</span>
+            </div>
+        </section>
+
+        <section class="daily-checkin">
+            <div class="daily-checkin-text">
+                <h3>Ação Principal</h3>
+                <p>Clique no botão abaixo para realizar uma ação principal</p>
+            </div>
+            <button class="daily-checkin-btn">Executar</button>
+        </section>
+
+        <nav class="bottom-nav">
+            <a href="home.html" class="nav-item active">
+                <i data-feather="home"></i>
+                <span>Lar</span>
+            </a>
+            <a href="My products and income.html" class="nav-item">
+                <i data-feather="package"></i>
+                <span>Produtos</span>
+            </a>
+            <a href="referal.html" class="nav-item">
+                <i data-feather="users"></i>
+                <span>Equipe</span>
+            </a>
+            <a href="www.menu.html" class="nav-item">
+                <i data-feather="user"></i>
+                <span>Menu</span>
+            </a>
+        </nav>
+    </div>
+
+    <script>
+        // Initialize Feather icons
+        feather.replace();
+
+		document.addEventListener("DOMContentLoaded", () => {
+			// Função para exibir mensagem "Em Breve"
+			const showComingSoon = () => {
+				alert("Em Breve");
+			};
+
+			// Botão de Sair
+			const logout = () => {
+				// Remove o token e qualquer outro dado armazenado
+				localStorage.removeItem("token");
+				localStorage.removeItem("user_id");
+
+				// Redireciona para a página de login
+				alert("Você foi deslogado.");
+				window.location.href = "/login";
+			};
+
+			// Associa os eventos aos botões
+			document.querySelector(".action-card:nth-child(1)").addEventListener("click", showComingSoon); // Sobre Nós
+			document.querySelector(".action-card:nth-child(2)").addEventListener("click", showComingSoon); // Contato
+			document.querySelector(".action-card:nth-child(3)").addEventListener("click", showComingSoon); // Contato
+			document.querySelector(".action-card:nth-child(5)").addEventListener("click", showComingSoon); // Regras
+			document.querySelector(".action-card:nth-child(6)").addEventListener("click", showComingSoon); // Baixar App
+			document.querySelector(".action-card:nth-child(4)").addEventListener("click", logout); // Sair
+		});
+    </script>
+</body>
+</html>

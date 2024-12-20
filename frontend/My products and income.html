@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Meus Produtos e Renda</title>
+  <style>
+
+	 body {
+		margin: 0;
+		padding: 0;
+		font-family: sans-serif;
+		max-width: 450px;
+		margin: 0 auto;
+		background-color: #f4f4f4;
+		position: relative;
+		overflow-x: hidden; /* Permite o scroll vertical, mas evita o scroll horizontal */
+	  }
+
+	  body::before, body::after {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-repeat: repeat;
+		background-size: 200px 200px;
+		opacity: 0.1;
+		z-index: -1;
+		will-change: transform; /* Dica de performance para navegador */
+	  }
+
+	body::before {
+	  background-image: 
+		repeating-linear-gradient(
+		  45deg,
+		  rgba(0,0,0,0.02) 0,
+		  rgba(0,0,0,0.02) 20px,
+		  transparent 20px,
+		  transparent 40px
+		),
+		url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100"><circle cx="50" cy="50" r="40" fill="none" stroke="%23000" stroke-width="2" stroke-dasharray="5,5"/><line x1="50" y1="50" x2="50" y2="20" stroke="%23000" stroke-width="2"><animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="10s" repeatCount="indefinite"/></line></svg>');
+	  animation: backgroundMove1 30s linear infinite;
+		}
+
+	body::after {
+	  background-image: 
+		url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100"><path d="M50 10 L60 50 L50 90 L40 50 Z" fill="none" stroke="%23000" stroke-width="2"><animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="15s" repeatCount="indefinite"/></path></svg>');
+	  animation: backgroundMove2 45s linear infinite;
+	  opacity: 0.05;
+	}
+
+	@keyframes backgroundMove1 {
+	  0% { 
+		transform: rotate(0deg) scale(1);
+		background-position: 0 0;
+	  }
+	  100% { 
+		transform: rotate(360deg) scale(1.1);
+		background-position: 100px 100px;
+	  }
+	}
+
+	@keyframes backgroundMove2 {
+	  0% { 
+		transform: rotate(0deg) scale(1);
+		background-position: 0 0;
+	  }
+	  100% { 
+		transform: rotate(-360deg) scale(1.05);
+		background-position: -100px -100px;
+	  }
+	}
+
+	/* Ajustes de performance */
+	* {
+	  transform: translateZ(0);
+	  backface-visibility: hidden;
+	}
+
+    header {
+      background: url('/static/imagse/product/bac_top.png') no-repeat center/cover;
+      height: 160px;
+      display: flex;
+      align-items: center;
+      padding: 0 1rem;
+      color: #000;
+    }
+
+    header img {
+      width: 2rem;
+      margin-right: 1rem;
+      cursor: pointer;
+    }
+
+    header h1 {
+      font-size: 1.6rem;
+      font-weight: bold;
+      flex: 1;
+      text-align: center;
+    }
+
+    .info-cards {
+      display: flex;
+      justify-content: space-between;
+      padding: 1rem;
+      gap: 1rem;
+    }
+
+    .info-card {
+      flex: 1;
+      background: #d9d9d9;
+      border-radius: 0.5rem;
+      border: 1px solid #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem;
+      font-family: sans-serif;
+    }
+
+    .info-card h2 {
+      margin: 0;
+      font-size: 1.4rem;
+    }
+
+    .info-card p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: #333;
+    }
+
+    .info-card-icon {
+      font-size: 1.4rem;
+      font-weight: bold;
+      margin-left: auto;
+    }
+
+    .product-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding: 1rem;
+    }
+
+    .product-card {
+      background: #fff;
+      border-radius: 0.5rem;
+      overflow: hidden;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .product-card img {
+      width: 100%;
+      display: block;
+      height: auto;
+    }
+
+    .product-details {
+      padding: 1rem;
+    }
+
+    .product-details h3 {
+      margin: 0 0 0.5rem;
+      font-size: 1.4rem;
+    }
+
+    .product-info {
+      font-size: 0.9rem;
+      margin: 0.2rem 0;
+    }
+
+    .product-info span {
+      color: #ff8000;
+      font-weight: bold;
+    }
+
+    .product-actions {
+      display: flex;
+      justify-content: flex-end;
+      padding: 0.5rem 1rem 1rem;
+    }
+
+    .buy-btn {
+      background: #ebc101;
+      border: none;
+      border-radius: 0.5rem;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+    }
+
+    .buy-btn.disabled {
+      background: #999;
+      cursor: not-allowed;
+    }
+
+    /* Responsividade */
+    @media (max-width: 400px) {
+      .info-cards {
+        flex-direction: column;
+      }
+
+      .info-card {
+        margin-bottom: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="My products and income_files/arrow_back.png" alt="Voltar">
+    <h1>SELECIONAR PRODUTO</h1>
+  </header>
+
+  <div class="info-cards">
+    <div class="info-card">
+      <div>
+        <!-- Adicionamos id para poder manipular via JS -->
+        <h2 id="meus-produtos-count">2</h2>
+        <p>Meu Produto</p>
+      </div>
+      <div class="info-card-icon">&gt;</div>
+    </div>
+    <div class="info-card">
+      <div>
+        <!-- Adicionamos id para poder manipular via JS -->
+        <h2 id="minha-renda-count">37</h2>
+        <p>Minha renda</p>
+      </div>
+      <div class="info-card-icon">&gt;</div>
+    </div>
+  </div>
+
+  <div class="product-list">
+    <!-- Aqui seus produtos, com data-id nos botões para identificar o produto -->
+    <div class="product-card">
+      <img src="My products and income_files/mataiTourbillon.jpg" alt="Matai Tourbillon">
+      <div class="product-details">
+        <h3>Matai Tourbillon</h3>
+        <p class="product-info">Preço: <span>R$75</span></p>
+        <p class="product-info">Validade: <span>25</span> dias</p>
+        <p class="product-info">Renda diária: <span>R$18.5</span></p>
+        <p class="product-info">Receita total: <span>R$462.5</span></p>
+      </div>
+      <div class="product-actions">
+        <!-- data-id para identificar o produto no backend -->
+        <button class="buy-btn" data-id="1">COMPRAR</button>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <img src="My products and income_files/YellowDiamond.jpg" alt="Yellow Diamond">
+      <div class="product-details">
+        <h3>Yellow Diamond</h3>
+        <p class="product-info">Preço: <span>R$180</span></p>
+        <p class="product-info">Validade: <span>25</span> dias</p>
+        <p class="product-info">Renda diária: <span>R$48</span></p>
+        <p class="product-info">Receita total: <span>R$1200</span></p>
+      </div>
+      <div class="product-actions">
+        <button class="buy-btn" data-id="2">COMPRAR</button>
+      </div>
+    </div>
+
+    <!-- Demais produtos... mantenha sua estrutura original, apenas adicionando data-id no botão COMPRAR -->
+    <!-- Produtos desabilitados não terão data-id ou podem manter, mas não serão clicáveis -->
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const meusProdutosCount = document.getElementById("meus-produtos-count");
+      const minhaRendaCount = document.getElementById("minha-renda-count");
+
+      const token = localStorage.getItem("token");
+
+      // Função para atualizar "Meu Produto" e "Minha renda"
+      function updateUserStats() {
+        if(!token) {
+          // Se não houver token, usuário não logado
+          meusProdutosCount.textContent = "0";
+          minhaRendaCount.textContent = "0";
+          return;
+        }
+
+        fetch("http://localhost:3000/meus-produtos", {
+          headers: {
+            "Authorization": `Bearer ${token}`
+          }
+        })
+        .then(res => res.json())
+        .then(data => {
+          const { total_produtos, accumulation } = data;
+          meusProdutosCount.textContent = total_produtos || 0;
+          minhaRendaCount.textContent = (accumulation ? parseFloat(accumulation).toFixed(2) : "0");
+        })
+        .catch(err => {
+          console.error("Erro ao buscar dados do usuário:", err);
+          meusProdutosCount.textContent = "0";
+          minhaRendaCount.textContent = "0";
+        });
+      }
+
+      // Chama a função ao carregar a página
+      updateUserStats();
+
+      // Ao comprar um produto, após sucesso, chamamos updateUserStats() novamente
+      const buyButtons = document.querySelectorAll(".buy-btn:not(.disabled)");
+      buyButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+          if(!token) {
+            alert("Você precisa estar logado para comprar este produto.");
+            window.location.href = "http://localhost:3000/login.html";
+            return;
+          }
+
+          const productId = btn.getAttribute("data-id");
+          if(!productId) {
+            alert("ID do produto não encontrado.");
+            return;
+          }
+
+          fetch("http://localhost:3000/comprar", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify({ product_id: productId })
+          })
+          .then(res => res.json())
+          .then(data => {
+            if(data.error) {
+              alert(data.error);
+            } else {
+              alert("Produto comprado com sucesso!");
+              // Atualiza os dados do usuário após a compra
+              updateUserStats();
+            }
+          })
+          .catch(err => {
+            console.error("Erro ao comprar:", err);
+            alert("Ocorreu um erro ao processar sua compra.");
+          });
+        });
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relógios Exclusivos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #3b82f6;
+            --secondary-color: #10b981;
+            --background-color: #f4f4f5;
+            --text-color: #18181b;
+            --card-background: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .action-card {
+            background: var(--card-background);
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .action-card:hover {
+            transform: scale(1.05);
+        }
+
+        .action-card i {
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .action-card span {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .account-summary {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .account-card {
+            background: var(--card-background);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .account-card h2 {
+            color: var(--primary-color);
+            font-size: 22px;
+            margin-bottom: 5px;
+        }
+
+        .account-card p {
+            color: #71717a;
+            font-size: 14px;
+        }
+
+        .daily-checkin {
+            background: linear-gradient(145deg, #6366f1, #8b5cf6);
+            color: white;
+            border-radius: 15px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .daily-checkin-text {
+            flex: 1;
+            margin-right: 15px;
+        }
+
+        .daily-checkin h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .daily-checkin-btn {
+            background: white;
+            color: #6366f1;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .daily-checkin-btn:hover {
+            background: #f1f5f9;
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #71717a;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            color: var(--primary-color);
+        }
+
+        .nav-item i {
+            margin-bottom: 5px;
+        }
+
+        .nav-item span {
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Coleção de Relógios</h1>
+            <p>Descubra estilo e precisão em cada detalhe</p>
+        </header>
+
+        <section class="quick-actions">
+            <a href="recarregar.html" class="action-card">
+                <i data-feather="credit-card"></i>
+                <span>Recarregar</span>
+            </a>
+            <a href="retirar.html" class="action-card">
+                <i data-feather="dollar-sign"></i>
+                <span>Retirar</span>
+            </a>
+            <a href="My products and income.html" class="action-card">
+                <i data-feather="package"></i>
+                <span>Produtos</span>
+            </a>
+        </section>
+
+        <section class="account-summary">
+            <div class="account-card" id="saldo-card">
+                <h2>R$0</h2>
+                <p>Saldo da Conta</p>
+            </div>
+            <div class="account-card" id="acumulacao-card">
+                <h2>R$0</h2>
+                <p>Acumulação</p>
+            </div>
+        </section>
+
+        <section class="daily-checkin">
+            <div class="daily-checkin-text">
+                <h3>Check-in Diário</h3>
+                <p>Ganhe bônus exclusivos todos os dias</p>
+            </div>
+            <button class="daily-checkin-btn">Fazer Check-in</button>
+        </section>
+
+        <nav class="bottom-nav">
+            <a href="home.html" class="nav-item active">
+                <i data-feather="home"></i>
+                <span>Lar</span>
+            </a>
+            <a href="My products and income.html" class="nav-item">
+                <i data-feather="package"></i>
+                <span>Produtos</span>
+            </a>
+            <a href="referal.html" class="nav-item">
+                <i data-feather="users"></i>
+                <span>Equipe</span>
+            </a>
+            <a href="www.menu.html" class="nav-item">
+                <i data-feather="user"></i>
+                <span>Menu</span>
+            </a>
+        </nav>
+    </div>
+
+	<script>
+        feather.replace();
+
+		document.addEventListener("DOMContentLoaded", () => {
+			const saldoContaElement = document.querySelector("#saldo-card h2");
+            const acumulacaoElement = document.querySelector("#acumulacao-card h2");
+
+			const token = localStorage.getItem("token");
+			const userId = localStorage.getItem("user_id");
+
+			if (!userId || !token) {
+				alert("Erro: Usuário não identificado. Faça login novamente.");
+				window.location.href = "/login"; 
+				return;
+			}
+
+			// Buscar saldo
+			fetch(`http://localhost:3000/saldo/${userId}`)
+				.then(response => {
+					if (!response.ok) {
+						throw new Error("Erro ao buscar saldo.");
+					}
+					return response.json();
+				})
+				.then(data => {
+					const saldo = parseFloat(data.saldo) || 0;
+					saldoContaElement.textContent = `R$${saldo.toFixed(2)}`;
+				})
+				.catch(error => {
+					console.error("Erro ao buscar saldo:", error);
+					alert("Não foi possível buscar o saldo. Tente novamente.");
+				});
+
+            // Buscar meus-produtos e acumulação
+            fetch("http://localhost:3000/meus-produtos", {
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+            })
+            .then(res => {
+                if(!res.ok) throw new Error("Erro ao buscar dados de produtos");
+                return res.json();
+            })
+            .then(data => {
+                const { total_produtos, accumulation } = data;
+                // Atualiza a acumulação na página
+                acumulacaoElement.textContent = `R$${parseFloat(accumulation || 0).toFixed(2)}`;
+            })
+            .catch(err => {
+                console.error("Erro ao buscar meus-produtos:", err);
+                // Não interrompe o fluxo, apenas não atualiza se falhar
+            });
+
+		});
+	</script>
+
+</body>
+</html>

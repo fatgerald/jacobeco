@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recarregar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #3b82f6;
+            --secondary-color: #10b981;
+            --background-color: #f4f4f5;
+            --text-color: #18181b;
+            --card-background: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .amount-selection {
+            margin: 20px 0;
+            background: var(--card-background);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .amount-selection h2 {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .grid-item {
+            background: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .grid-item:hover {
+            transform: scale(1.05);
+        }
+
+        .input-other {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .input-other input {
+            flex: 1;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid var(--primary-color);
+            border-radius: 8px;
+            margin-right: 10px;
+        }
+
+        .input-other button {
+            background: var(--primary-color);
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .input-other button:hover {
+            background: var(--secondary-color);
+        }
+
+        .payment-method {
+            margin-top: 20px;
+            background: var(--card-background);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .payment-method h2 {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .payment-method .method {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .method-item {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            background: var(--card-background);
+            border: 1px solid var(--primary-color);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            margin: 0 5px;
+        }
+
+        .method-item.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .method-item:hover {
+            transform: scale(1.05);
+        }
+
+        .btn-recharge {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .btn-recharge button {
+            background: var(--primary-color);
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .btn-recharge button:hover {
+            background: var(--secondary-color);
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #71717a;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            color: var(--primary-color);
+        }
+
+        .nav-item i {
+            margin-bottom: 5px;
+        }
+
+        .nav-item span {
+            font-size: 12px;
+        }
+		/* Modal Overlay */
+		#pixModal .modal-overlay {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: rgba(0, 0, 0, 0.5);
+			z-index: 999;
+		}
+
+		/* Modal Content */
+		#pixModal .modal-content {
+			position: fixed;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			background: var(--card-background);
+			padding: 20px;
+			border-radius: 12px;
+			box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+			z-index: 1000;
+			text-align: center;
+			width: 90%;
+			max-width: 400px;
+		}
+
+		/* Modal Body */
+		#pixModal .modal-body {
+			margin: 10px 0;
+		}
+
+		/* Close Button */
+		#pixModal .close-btn {
+			background: var(--primary-color);
+			color: white;
+			padding: 10px 15px;
+			border: none;
+			border-radius: 8px;
+			cursor: pointer;
+			transition: background 0.3s ease;
+		}
+
+		#pixModal .close-btn:hover {
+			background: var(--secondary-color);
+		}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Recarregar</h1>
+            <p>Selecione o valor e o método de recarga</p>
+        </header>
+
+        <section class="amount-selection">
+            <h2>Valor de Recarga</h2>
+            <div class="grid">
+                <div class="grid-item">R$10</div>
+                <div class="grid-item">R$20</div>
+                <div class="grid-item">R$50</div>
+                <div class="grid-item">R$100</div>
+                <div class="grid-item">R$200</div>
+                <div class="grid-item">R$500</div>
+            </div>
+            <div class="input-other">
+                <input type="number" placeholder="Outro valor">
+                <button>Adicionar</button>
+            </div>
+        </section>
+
+        <section class="payment-method">
+            <h2>Método de Pagamento</h2>
+            <div class="method">
+                <div class="method-item active">PIX</div>
+            </div>
+        </section>
+
+        <div class="btn-recharge">
+            <button>Recarregar Agora</button>
+        </div>
+    </div>
+
+    <nav class="bottom-nav">
+            <a href="home.html" class="nav-item active">
+                <i data-feather="home"></i>
+                <span>Lar</span>
+            </a>
+            <a href="My products and income.html" class="nav-item">
+                <i data-feather="package"></i>
+                <span>Produtos</span>
+            </a>
+            <a href="referal.html" class="nav-item">
+                <i data-feather="users"></i>
+                <span>Equipe</span>
+            </a>
+            <a href="www.menu.html" class="nav-item">
+                <i data-feather="user"></i>
+                <span>Menu</span>
+            </a>
+       </nav>
+	<!-- Modal para Exibição do PIX -->
+	<div id="pixModal" style="display: none;">
+		<div class="modal-overlay"></div>
+		<div class="modal-content">
+			<h2>Pagamento PIX</h2>
+			<p>Escaneie o QR Code ou copie o código abaixo para realizar o pagamento.</p>
+			<div class="modal-body">
+				<img id="qrcode-img" src="" alt="QR Code PIX" style="width:200px; height:200px; margin-bottom: 15px;">
+				<textarea id="copiaecola" readonly style="width: 100%; height: 50px; margin-bottom: 15px; resize: none;"></textarea>
+				<p id="valor-cobrado"></p>
+			</div>
+			<button class="close-btn">Fechar</button>
+		</div>
+	</div>
+	<script>
+		// Initialize Feather icons
+		feather.replace();
+
+		document.addEventListener("DOMContentLoaded", () => {
+			const gridItems = document.querySelectorAll(".grid-item");
+			const inputOther = document.querySelector(".input-other input");
+			const rechargeButton = document.querySelector(".btn-recharge button");
+			let selectedAmount = null;
+
+			// Seleção de valor
+			gridItems.forEach(item => {
+				item.addEventListener("click", () => {
+					gridItems.forEach(i => i.classList.remove("active"));
+					item.classList.add("active");
+					selectedAmount = parseFloat(item.textContent.replace("R$", ""));
+					inputOther.value = ""; // Limpar campo de outro valor
+				});
+			});
+
+			inputOther.addEventListener("input", () => {
+				gridItems.forEach(i => i.classList.remove("active"));
+				selectedAmount = parseFloat(inputOther.value);
+			});
+
+			// Função para exibir o modal PIX com dados recebidos
+			const showPixModal = (qrcode, copiaecolar, valorC) => {
+				const modal = document.getElementById("pixModal");
+				document.getElementById("qrcode-img").src = `data:image/png;base64,${qrcode}`;
+				document.getElementById("copiaecola").value = copiaecolar; // Altere para copiaecolar
+				document.getElementById("valor-cobrado").innerText = `Valor cobrado: R$${valorC}`;
+
+				modal.style.display = "block";
+
+				// Fechar modal
+				document.querySelector("#pixModal .close-btn").onclick = () => modal.style.display = "none";
+				document.querySelector("#pixModal .modal-overlay").onclick = () => modal.style.display = "none";
+			};
+
+			// Botão de recarga
+			const userToken = localStorage.getItem("token"); // Token JWT armazenado no localStorage
+
+			rechargeButton.addEventListener("click", async () => {
+				if (!selectedAmount || selectedAmount <= 0) {
+					alert("Selecione ou informe um valor válido para recarga.");
+					return;
+				}
+
+				try {
+					const response = await fetch("http://localhost:3000/recarregar", {
+						method: "POST",
+						headers: { 
+							"Content-Type": "application/json",
+							"Authorization": `Bearer ${userToken}` // Envia o token no cabeçalho
+						},
+						body: JSON.stringify({
+							amount: selectedAmount,
+							method_code: "pix",
+						}),
+					});
+
+					const data = await response.json();
+					console.log("Resposta da API:", data);
+
+					if (!response.ok || !data.qrcode) throw new Error(data.error || "Erro ao processar recarga");
+
+					// Exibe os dados PIX no modal
+					showPixModal(data.qrcode, data.copiaecola, data.valor_cobrado);
+
+					alert("Pagamento pendente. Confirme o pagamento para que o saldo seja atualizado.");
+
+				} catch (error) {
+					console.error("Erro:", error.message);
+					alert("Erro ao processar recarga.");
+				}
+			});
+		});
+		// Função para confirmar pagamento
+		const confirmarPagamento = async (txid) => {
+			try {
+				const response = await fetch("http://localhost:3000/confirmar-pagamento", {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify({ txid: txid }),
+				});
+
+				const data = await response.json();
+				if (response.ok) {
+					alert(data.message);
+				} else {
+					alert(data.error);
+				}
+			} catch (error) {
+				console.error("Erro ao confirmar pagamento:", error.message);
+				alert("Erro ao confirmar pagamento.");
+			}
+		};
+
+	</script>
+
+</body>
+</html>

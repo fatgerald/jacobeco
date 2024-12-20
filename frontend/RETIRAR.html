@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retirar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #3b82f6;
+            --secondary-color: #10b981;
+            --background-color: #f4f4f5;
+            --text-color: #18181b;
+            --card-background: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .amount-selection {
+            margin: 20px 0;
+            background: var(--card-background);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .amount-selection h2 {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .input-other {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .input-other input {
+            flex: 1;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid var(--primary-color);
+            border-radius: 8px;
+            margin-right: 10px;
+        }
+
+        .input-other button {
+            background: var(--primary-color);
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .input-other button:hover {
+            background: var(--secondary-color);
+        }
+
+        .payment-method {
+            margin-top: 20px;
+            background: var(--card-background);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .payment-method h2 {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .payment-method .method {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .method-item {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            background: var(--card-background);
+            border: 1px solid var(--primary-color);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            margin: 0 5px;
+        }
+
+        .method-item.unavailable {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .method-item.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .method-item:hover {
+            transform: scale(1.05);
+        }
+
+        .btn-recharge {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .btn-recharge button {
+            background: var(--primary-color);
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .btn-recharge button:hover {
+            background: var(--secondary-color);
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #71717a;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            color: var(--primary-color);
+        }
+
+        .nav-item i {
+            margin-bottom: 5px;
+        }
+
+        .nav-item span {
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Retirar</h1>
+            <p>Insira o valor e selecione o método de retirada</p>
+        </header>
+
+        <section class="amount-selection">
+			<h2>Valor de Retirada</h2>
+			<div class="input-other">
+				<input type="number" id="withdraw-amount" placeholder="Digite o valor">
+				<button onclick="confirmWithdraw()">Confirmar</button>
+			</div>
+			<p style="margin-top: 10px; font-size: 14px; color: var(--text-color);">
+				Será descontado um valor de 15% referente ao imposto.
+			</p>
+		</section>
+
+
+        <section class="payment-method">
+            <h2>Selecione o Banco</h2>
+            <div class="input-other">
+                <select id="bank-name" style="flex: 1; padding: 10px; font-size: 16px; border: 1px solid var(--primary-color); border-radius: 8px; margin-right: 10px;">
+                    <option value="">Selecione o Banco</option>
+                    <option value="Banco do Brasil">Banco do Brasil</option>
+                    <option value="Caixa Econômica">Caixa Econômica</option>
+                    <option value="Itaú">Itaú</option>
+                    <option value="Bradesco">Bradesco</option>
+                    <option value="Santander">Santander</option>
+                </select>
+            </div>
+           <div class="input-other">
+				<input type="text" id="agency" placeholder="Digite a Agência" maxlength="5" pattern="\d{4,5}" title="Agência deve ter entre 4 e 5 dígitos">
+			</div>
+			<div class="input-other">
+				<input type="text" id="account" placeholder="Digite a Conta" maxlength="13" pattern="\d{6,13}" title="Conta deve ter entre 6 e 13 dígitos">
+			</div>
+        </section>
+
+        <div class="btn-recharge">
+            <button onclick="processWithdraw()">Retirar Agora</button>
+        </div>
+    </div>
+
+    <nav class="bottom-nav">
+            <a href="home.html" class="nav-item active">
+                <i data-feather="home"></i>
+                <span>Lar</span>
+            </a>
+            <a href="My products and income.html" class="nav-item">
+                <i data-feather="package"></i>
+                <span>Produtos</span>
+            </a>
+            <a href="referal.html" class="nav-item">
+                <i data-feather="users"></i>
+                <span>Equipe</span>
+            </a>
+            <a href="www.menu.html" class="nav-item">
+                <i data-feather="user"></i>
+                <span>Menu</span>
+            </a>
+      </nav>
+
+    <script>
+     // Initialize Feather icons
+    feather.replace();
+
+    async function processWithdraw() {
+        const amount = parseFloat(document.getElementById('withdraw-amount').value);
+        const bank = document.getElementById('bank-name').value;
+        const agency = document.getElementById('agency').value;
+        const account = document.getElementById('account').value;
+
+        const agencyPattern = /^\d{4,5}$/;
+        const accountPattern = /^\d{6,13}$/;
+
+        // Validação de campos
+        if (!amount || amount <= 0) {
+            alert('Por favor, insira um valor válido para retirar.');
+            return;
+        }
+
+        if (!bank) {
+            alert('Por favor, selecione o banco.');
+            return;
+        }
+
+        if (!agencyPattern.test(agency)) {
+            alert('Por favor, insira uma agência válida (4 a 5 dígitos).');
+            return;
+        }
+
+        if (!accountPattern.test(account)) {
+            alert('Por favor, insira uma conta válida (6 a 13 dígitos).');
+            return;
+        }
+
+        // Token do usuário
+        const userToken = localStorage.getItem("token");
+        if (!userToken) {
+            alert("Você precisa estar logado para realizar um saque.");
+            return;
+        }
+
+        // Realizar a requisição ao servidor
+        try {
+            const response = await fetch("http://localhost:3000/solicitar-saque", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${userToken}` // Token do usuário
+                },
+                body: JSON.stringify({
+                    amount: amount,
+                    bank_name: bank,
+                    agency: agency,
+                    account: account
+                })
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                alert("Saque solicitado com sucesso! Aguarde a confirmação.");
+                // Limpa os campos após sucesso
+                document.getElementById('withdraw-amount').value = '';
+                document.getElementById('bank-name').value = '';
+                document.getElementById('agency').value = '';
+                document.getElementById('account').value = '';
+            } else {
+                alert(data.error || "Erro ao processar o saque.");
+            }
+        } catch (error) {
+            console.error("Erro ao processar saque:", error);
+            alert("Erro ao processar o saque. Tente novamente.");
+        }
+    }
+    </script>
+</body>
+</html>

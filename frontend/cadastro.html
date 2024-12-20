@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastre-se</title>
+    <link rel="stylesheet" href="./Cadastre-se_files/layui.css">
+    <script src="./Cadastre-se_files/layui.js.baixados"></script>
+    <script src="./Cadastre-se_files/comm.js.baixados"></script>
+    <script src="./Cadastre-se_files/jquery-1.11.0.min.js.baixados"></script>
+    <script src="./Cadastre-se_files/i18n.js.baixados"></script>
+    <link href="./Cadastre-se_files/main.css" rel="stylesheet">
+</head>
+<body style="margin: 0; overflow: hidden;">
+    <video autoplay loop muted playsinline 
+           style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1;" 
+           poster="https://image.mux.com/Qw43XeJCpbhMZk3I00pv2Dk3UWK7UiAWb/thumbnail.webp?time=0" 
+           src="blob:https://jacobandco.com/d0c9ab4c-89eb-44de-8b1b-737a1e979c91">
+    </video>
+
+    <div style="max-width: 450px; margin: 0 auto; position: relative;">
+        <div style="position: absolute; left: 20px; top: 75px; font-weight: bold; color: #666; font-size: 15px;">
+            Cadastre-se
+        </div>
+        <div style="position:absolute; left:20px; top:100px; font-weight:bold;color:#fff; font-size:50px;">
+            <img src="https://www.datocms-assets.com/99008/1685443206-jacob-co-light.svg" alt="Jacob & Co" style="max-width: 50%; height: auto;">
+        </div>
+        <div style="position: absolute; left: 23px; top: 170px; width: 250px; color: #fff; font-size: 14px;">
+            A tecnologia muda o mundo
+        </div>
+
+        <div style="width:90%; margin:0 auto; padding-top:250px">
+            <div class="layui-form layui-form-pane">
+                <div class="layui-form-item" style="height:42px;">
+                    <!-- Campo de telefone -->
+                    <div class="inputdiv">
+                        <img src="./Cadastre-se_files/i1.png" style="margin-right:5px;width:20px; height:20px; margin-top:12px;">
+                        <font style="height: 45px; line-height: 46px; color: #fff;" id="moblie_qu">+55</font>
+                        <i id="demo6" class="layui-icon layui-icon-triangle-d" style="margin-left: 2px; margin-right: 2px; color: #fff;"></i>
+                        <input type="number" id="moblie" pattern="[0-9]*" placeholder="Por favor insira o número do celular" class="layui-input" style="width:100%; height:45px; color:#fff; background:#122149;">
+                    </div>
+                </div>
+                <div class="layui-form-item" style="height:42px;">
+                    <!-- Campo senha -->
+                    <div class="inputdiv">
+                        <img src="./Cadastre-se_files/i2.png" style="margin-right:5px; height:20px; margin-top:12px;">
+                        <input type="password" id="password" maxlength="20" placeholder="Senha" class="layui-input" style="width:100%; height:45px; color:#fff; background:#122149;">
+                    </div>
+                </div>
+                <div class="layui-form-item" style="height:42px;">
+                    <!-- Campo repetir senha -->
+                    <div class="inputdiv">
+                        <img src="./Cadastre-se_files/i2.png" style="margin-right:5px; height:20px; margin-top:12px;">
+                        <input type="password" id="password1" maxlength="20" placeholder="Repita a senha" class="layui-input" style="width:100%; height:45px; color:#fff; background:#122149;">
+                    </div>
+                </div>
+                <div class="layui-form-item" style="height:42px;">
+                    <!-- Campo código de convite (referral_code) -->
+                    <div class="inputdiv">
+                        <img src="./Cadastre-se_files/i3.png" style="margin-right:5px; height:20px; margin-top:12px;">
+                        <input type="text" id="invitation" maxlength="50" placeholder="Código de convite (opcional)" class="layui-input" style="width:100%; height:45px; color:#fff; background:#122149;">
+                    </div>
+                </div>
+
+                <!-- Outras validações/inputs se necessário -->
+
+                <div class="layui-form-item" style="margin-top:35px; text-align:center;">
+                    <div style="width:100%; margin:0 auto;">
+                        <input class="layui-btn" id="reg" value="Cadastre-se agora" style="width: 60%; font-weight:700; color:#fff; height:45px; font-size:16px; border:0px; background-image: linear-gradient(to right, #2F4582,#0536B7); border-radius:25px;" type="button">
+                    </div>
+                </div>
+                <div class="layui-form-item" style="margin-top: 35px; color:#2D3B60; text-align:center; font-size:14px;">
+                    <div style="float:left; width:100%; text-align:center;">
+                        Já está registrado?
+                        <span id="signin" style="color:#02368C; margin-left:10px; font-family: PingFang SC-Regular,PingFang SC; font-weight: bold; cursor: pointer;">Faça login</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $("#reg").click(function () {
+            const phone = $("#moblie").val();
+            const password = $("#password").val();
+            const confirmPassword = $("#password1").val();
+            const referral_code = $("#invitation").val().trim(); // Lê o código de convite
+
+            if (!phone || !password || !confirmPassword) {
+                alert("Por favor, preencha todos os campos obrigatórios.");
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                alert("As senhas não coincidem.");
+                return;
+            }
+
+            $.ajax({
+                url: "http://localhost:3000/register",
+                method: "POST",
+                contentType: "application/json",
+                data: JSON.stringify({ phone, password, referral_code }), // Envia referral_code
+                success: function (response) {
+                    alert(response.message);
+                    window.location.href = "/login";
+                },
+                error: function (xhr) {
+                    alert(xhr.responseJSON.error);
+                },
+            });
+        });
+
+        $("#signin").click(function () {
+            window.location.href = "/login";
+        });
+    </script>
+</body>
+</html>
